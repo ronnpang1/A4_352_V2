@@ -10,11 +10,13 @@ public class HashTable {
 	private double thresholdfactor;
 	private double rehashmultiplyer=2;
 	private static char collision='Q';
+	private static char markertype='A';
 	
 public HashTable(){
 	
 	table = new HashEntry[size];
-	for(int i =0; i<=(size-1);i++){
+	for(int i =0; i<=(size-1);i++)
+	{
 		table[i]=null;
 	}
 }
@@ -109,6 +111,73 @@ public String get(String k){
 	
 }
 
+public void setEmptyMarkerScheme(char type)
+{
+	
+	
+	
+	if(type == 'A')
+	{
+		
+		for(int i = 0;i<size-1;i++)
+		{
+			
+			if(table[i]==null)
+			{
+				
+				table[i].setValue("A");
+				
+			}
+			
+			
+		}
+		
+		
+	}	
+	if(type == 'R')
+	{
+		
+		for(int i = 0;i<size-1;i++)
+		{
+			
+			if(table[i]==null)
+			{
+				
+				table[i].setValue("A");
+				
+			}
+			
+			
+		}
+		
+		
+	}	
+	if(type == 'N')
+	{
+		
+		for(int i = 0;i<size-1;i++)
+		{
+			
+			if(table[i]==null)
+			{
+				
+				table[i].setValue("A");
+				
+			}
+			
+			
+		}
+		
+		
+	}	
+
+
+
+
+
+
+}
+
 public String put(String k, String v){
 	
 	int h = this.hashFunction(k);
@@ -129,12 +198,30 @@ public String remove(String k){
 	
 	if(table[h]!= null){
 		String old = table[h].getValue();
-		table[h]= null;
+		if(markertype=='A')
+		table[h].setValue("A");
+		if(markertype=='N')
+		table[h].setValue("-"+table[h].getValue());
+		if(markertype=='R')
+		{
+		String a = table[h].getValue();
+		table[h].setValue("");
+		for(int i =0;i<size-1;i++)
+		{
+			
+			if (table[i].getHash() == h);
+			
+			
+		}
+		
+		
+		}
 		return old;
 	}
 	else return null;
 	
 }
+
 
 public void entrySet(){
 	
@@ -228,7 +315,7 @@ public void tablereorder()
 {
 	System.out.println("CAPACITY REACHED. REORDERING TABLE....");
 	table2 = new HashEntry[(int) (size* rehashmultiplyer)];
-	
+	size=(int) (size*rehashmultiplyer);
 
 	for(int i =0; i<=((size*rehashmultiplyer)-1);i++)
 	{
@@ -269,6 +356,14 @@ public void setRehashThreshold(double factorOrNumber)
 
 public static char getCollision() {
 	return collision;
+}
+
+public static char getMarkertype() {
+	return markertype;
+}
+
+public static void setMarkertype(char markertype) {
+	HashTable.markertype = markertype;
 }
 
 

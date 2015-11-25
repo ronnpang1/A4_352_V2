@@ -10,6 +10,7 @@ public class driver {
 		System.out.println(ht.getIndex("ho"));
 		ht.entrySet();
 		ht.keySet();
+		ht.valueSet();
 	}
 
 }
