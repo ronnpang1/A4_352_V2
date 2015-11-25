@@ -204,13 +204,21 @@ public String remove(String k){
 		table[h].setValue("-"+table[h].getValue());
 		if(markertype=='R')
 		{
-		String a = table[h].getValue();
-		table[h].setValue("");
+		//String v = table[h].getValue();;
+		int key=table[h].getHash();
 		for(int i =0;i<size-1;i++)
 		{
 			
-			if (table[i].getHash() == h);
-			
+			if (table[i].getHash() == key);
+			{
+				int index=table[i].getHash();
+				table[i].setValue(table[key].getValue());
+				table[i].setKey(table[key].getKey());
+				table[i].setHash(table[key].getHash());
+				table[key].setHash(0);
+				table[key].setKey(null);
+				table[key].setHash(0);
+			}
 			
 		}
 		

@@ -20,6 +20,10 @@ public String getKey(){
 	return key;
 }
 
+public void setKey(String k){
+	
+	 key=k;
+}
 public String getValue(){
 	
 	return value;
